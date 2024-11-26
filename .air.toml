@@ -1,0 +1,35 @@
+root = "."                 # The root directory of your project
+testdata_dir = "testdata"  # Directory for test data
+tmp_dir = "tmp"            # Temporary directory for compiled binaries
+
+[build]
+  cmd = "go build -o ./tmp/main ./cmd/api"  # Build command, adjust to point to your main.go
+  bin = "./tmp/main"                       # Path to the binary
+  delay = 1000                             # Delay before restarting (in milliseconds)
+  exclude_dir = ["assets", "tmp", "vendor", "testdata"]  # Directories to exclude
+  exclude_file = []                        # Specific files to exclude
+  exclude_regex = ["_test.go"]             # Exclude files matching these patterns (e.g., test files)
+  include_dir = []                         # Directories to include (empty means include all)
+  include_ext = ["go", "tpl", "tmpl", "html"]  # File extensions to watch
+  log = "build-errors.log"                 # Log file for build errors
+  stop_on_error = false                    # Stop on build errors (set to true if you want the server to stop)
+
+[color]
+  app = ""                  # Application output color (leave blank for no color)
+  build = "yellow"          # Build logs color
+  main = "magenta"          # Main logs color
+  runner = "green"          # Runner logs color
+  watcher = "cyan"          # File watcher logs color
+
+[log]
+  main_only = false         # Log only the main package
+  silent = false            # Disable all logging (set to true to silence output)
+  time = true               # Include timestamps in logs
+
+[misc]
+  clean_on_exit = true      # Clean up the `tmp` directory when `air` exits
+
+[proxy]
+  enabled = false           # Disable proxy (set to true to enable)
+  app_port = 8000           # Application port if using proxy
+  proxy_port = 8080         # Proxy port (where requests will be forwarded)
